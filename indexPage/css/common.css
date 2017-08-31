@@ -25,6 +25,7 @@
 }
 
 .jumbotron{
+	height:50%;
 	font-family: '华文行楷';
 	font-size:16px;
 	text-align: center;
@@ -57,7 +58,12 @@
 }
 
 .footer{
+	display:block;
 	width:100%;
 	height:auto;
 	text-align: center;
+}
+.footer > img{
+	width:150px;
+	height:100%;
 }
