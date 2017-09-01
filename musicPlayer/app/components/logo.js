@@ -11,7 +11,7 @@ let Logo = React.createClass({
                 </Link>
                 <h1 className="caption">如意音乐 （基于 React 技术设计）</h1>
 
-                <span className="contact -col2"><a href="https://zhengjinwei123.github.io" target="__blank">联系我</a></span>
+                <span className="contact -col2"><a href="http://zhengjinwei.top:3000" target="__blank">联系我</a></span>
         	</div>
         );
     }

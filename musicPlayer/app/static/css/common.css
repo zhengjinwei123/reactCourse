@@ -227,3 +227,19 @@ ul.list{
 .center-h{
     justify-content: center;
 }
+
+.my-btn{
+    font-family:'微软雅黑';
+    display: block;
+    width:100px;
+    height:40px;
+    margin-left:10px;
+    text-align: center;
+    background: #272822;
+    line-height: 40px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px -5px black;
+}
+.my-btn:hover{
+    background: #484B43;
+}
