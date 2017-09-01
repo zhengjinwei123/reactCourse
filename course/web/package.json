@@ -1,0 +1,10 @@
+{
+  "name": "web",
+  "version": "0.0.1",
+  "description": "Online Course Web Base On React",
+  "scripts": {
+    "dev":"cross-env NODE_ENV=development nodemon ./server/server.dev.js --watch server --watch build",
+    "build":"npm run clean && cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
+    "clean":"rimraf"
+  }
+}
