@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import {IndexLink, Link} from 'react-router'
 import './style.scss';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class Navbar extends Component {
-    constructor() {
-        super()
+    constructor(props,context) {
+        super(props,context);
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     render() {

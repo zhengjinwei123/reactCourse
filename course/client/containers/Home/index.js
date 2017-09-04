@@ -3,8 +3,9 @@ import Home from '../../components/Home/index.js'
 import './style.scss';
 
 class CHome extends Component {
-    constructor() {
-        super()
+    constructor(props,context) {
+        super(props,context);
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     render() {

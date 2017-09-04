@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
 import './style.scss'
 import imgAvatar from './assets/avatar.png'
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class Header extends Component {
-    constructor() {
-        super()
+    constructor(props,context) {
+        super(props,context);
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
+
     render() {
         return (
             <header className='header'>

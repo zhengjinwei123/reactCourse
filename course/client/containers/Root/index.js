@@ -7,10 +7,12 @@ import Main from '../../components/Main'
 import actions from '../../actions/root.js'
 import './style.scss';
 import '../../statics/global.scss'
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class CRoot extends Component {
-    constructor() {
-        super()
+    constructor(props,context) {
+        super(props,context);
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     render() {

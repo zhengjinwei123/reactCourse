@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import About from '../../components/About'
 import './style.scss';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class CAbout extends Component {
-    constructor() {
-        super()
+    constructor(props,context) {
+        super(props,context);
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
 
     render() {
