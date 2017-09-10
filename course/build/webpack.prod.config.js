@@ -45,11 +45,11 @@ clientConfig = {
                 cacheDirectory: true
             }
         }, {
-            test: /\.scss$/,
+            test: /\.(scss|css)$/,
             loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
         }, {
-            test: /\.(jpg|png|gif|webp)$/,
-            loader: 'url?limit=8000'
+            test: /\.(png|jpg|gif|webp|bmp|woff|woff2|svg|ttf|eot)($|\?)/i,
+            loader: 'url-loader?limit=8000'// 限制大小小于5k
         }, {
             test: /\.json$/,
             loader: 'json'
@@ -105,16 +105,15 @@ serverConfig = {
                 cacheDirectory: true
             }
         }, {
-            test: /\.scss$/,
+            test: /\.(scss|css)$/,
             exclude: /node_modules/,
             loaders: [
                 'css',
                 'sass'
             ]
         }, {
-            test: /\.(jpg|png|gif|webp)$/,
-            exclude: /node_modules/,
-            loader: 'url?limit=8000'
+            test: /\.(png|jpg|gif|webp|bmp|woff|woff2|svg|ttf|eot)($|\?)/i,
+            loader: 'url-loader?limit=8000'// 限制大小小于5k
         }, {
             test: /\.json$/,
             loader: 'json'
