@@ -37,7 +37,7 @@ module.exports = {
                     cacheDirectory: true
                 }
             }, {
-                test: /\.scss$/,
+                test: /\.(scss|css)$/,
                 loaders: [
                     'style',
                     'css',
@@ -53,11 +53,7 @@ module.exports = {
                 test: /\.less$/,
                 exclude: /node_modules/,
                 loaders: ['style', 'css?localIdentName=[name]__[local]__[hash:base64:8]', 'postcss', 'less']
-            }, {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                loaders: ['style', 'css?localIdentName=[name]__[local]__[hash:base64:8]', 'postcss']
-            }, {
+            },  {
                 test: /\.(png|jpg|gif|webp|bmp|woff|woff2|svg|ttf|eot)($|\?)/i,
                 loader: 'url-loader?limit=8000'// 限制大小小于5k
             },
@@ -69,7 +65,7 @@ module.exports = {
     postcss: [
         require('autoprefixer') //调用autoprefixer插件，例如 display: flex
     ],
-    resolve: {extensions: ['', '.js', '.json', '.scss', '.jsx']},
+    resolve: {extensions: ['', '.js', '.json', '.scss','.css','.jsx']},
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
@@ -78,7 +74,14 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)}),
+        new webpack.DefinePlugin(
+            {
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+            },
+            {
+                '__DEV__':(process.env.NODE_ENV === "development") ? "1" : "0"
+            }
+        ),
         new HtmlWebpackPlugin({
             filename: '../views/dev/index.html',
             template: './views/tpl/index.tpl.html'

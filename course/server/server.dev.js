@@ -14,7 +14,7 @@ require('babel-register')({
 
 // Css require hook
 require('css-modules-require-hook')({
-    extensions: ['.scss'],
+    extensions: ['.scss','.css'],
     preprocessCss: (data, filename) =>
         require('node-sass').renderSync({
             data,
@@ -24,12 +24,13 @@ require('css-modules-require-hook')({
     generateScopedName: '[name]__[local]__[hash:base64:8]'
 })
 
+//png|jpg|gif|webp|bmp|woff|woff2|svg|ttf|eot
 // Image require hook
 require('asset-require-hook')({
     name: '/[hash].[ext]',
-    extensions: ['jpg', 'png', 'gif', 'webp'],
+    extensions: ['jpg', 'png', 'gif', 'webp','bmp','woff','woff2','svg','ttf','eot'],
     limit: 8000
-})
+});
 
 const app = require('./app.js'),
     convert = require('koa-convert'),

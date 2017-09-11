@@ -1,0 +1,40 @@
+.login-container{
+    display:block;
+    width:400px;
+    height:500px;
+    border:1px solid #6e6e6e;
+    box-shadow:  2px 2px 2px 2px #6e6e6e;
+    border-radius: 4px;
+
+    .login-header{
+        width:400px;
+        height:40px;
+        font-size:20px;
+        font-weight:bold;
+        line-height: 40px;
+        border:1px solid #6e6e6e;
+        background: #fbffff;
+
+        div:nth-of-type(1){
+            float: left;
+            width: calc(90% - 6px);
+            height:100%;
+            text-align: center;
+        }
+        div:nth-of-type(2){
+            float: right;
+            margin-right:5px;
+            height:40px;
+            width: 10%;
+            text-align: center;
+
+
+            &:hover{
+                color:red;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+

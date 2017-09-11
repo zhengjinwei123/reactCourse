@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Home from '../../components/Home/index.js'
 import './style.scss';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 class CHome extends Component {
     constructor(props,context) {
