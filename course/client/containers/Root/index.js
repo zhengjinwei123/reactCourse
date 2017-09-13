@@ -35,7 +35,7 @@ class CRoot extends Component {
         }
 
         PubSub.subscribe('close_login', (msg, item) => {
-            alert("close login");
+
         });
     }
 

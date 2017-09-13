@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "An universal React isomorphic boilerplate for building server-side render web app",
     "scripts": {
-        "dev": "cross-env NODE_ENV=development nodemon ./server/server.dev.js --watch server --watch build",
+        "dev": "cross-env NODE_ENV=development nodemon ./server/server.dev.js --hot --watch server --watch build",
         "build": "npm run clean && cross-env NODE_ENV=production webpack --config ./build/webpack.prod.config.js --progress",
         "clean": "rimraf ./dist/client/* && rimraf ./dist/server/* && rimraf ./views/prod/*",
         "lint": "eslint . --ext .js",
