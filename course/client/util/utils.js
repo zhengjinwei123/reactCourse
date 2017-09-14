@@ -12,8 +12,8 @@ function ajax(options) {
     };
     let promise, action;
 
-    options = Object.assign({}, defaults, options)
-    promise = request[options.type](options.url).withCredentials()
+    options = Object.assign({}, defaults, options);
+    promise = request[options.type](options.url).withCredentials();
     Object.keys(options).forEach(key => {
         if (!key.match(/url|type|data/)) {
             promise.set(key, options[key])
@@ -46,7 +46,12 @@ function getURLParams() {
     return ret
 }
 
+function isEmail(str){
+    return /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(str);
+}
+
 export default {
     ajax,
-    getURLParams
+    getURLParams,
+    isEmail
 }

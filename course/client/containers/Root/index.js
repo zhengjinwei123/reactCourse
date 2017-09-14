@@ -3,16 +3,21 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import Header from '../../components/Header'
 import Login from '../../components/Login';
+import Register from '../../components/Register';
+
 import Navbar from '../../components/Navbar'
 import Main from '../../components/Main'
 import actions from '../../actions/root.js'
 import './style.scss';
+import '../../statics/reset.scss';
 import '../../statics/global.scss'
 import '../../statics/font-awesome/css/font-awesome.min.css'
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import localStore from '../../util/localStore';
 import CommConst from '../../constants/common';
 import PubSub from 'pubsub-js';
+import $ from 'jquery';
+import * as UserQuest from '../../fetch/user/user';
 
 class CRoot extends Component {
     constructor(props, context) {
@@ -34,23 +39,67 @@ class CRoot extends Component {
             });
         }
 
-        PubSub.subscribe('close_login', (msg, item) => {
-
+        let dRegister = this.refs.register;
+        let dLogin = this.refs.login;
+        $(dLogin).css({
+            top: "60px"
         });
+
+        PubSub.subscribe('close_window', (msg, item) => {
+            if (item === 'login') {
+                $(dLogin).css({
+                    top: "-400px"
+                });
+                $(dRegister).css({
+                    top: "60px"
+                });
+            } else if (item === "register") {
+                $(dLogin).css({
+                    top: "60px"
+                });
+                $(dRegister).css({
+                    top: "-400px"
+                });
+            }
+        });
+    }
+
+    // 用户登录
+    loginHandler(email,password) {
+        let resp = UserQuest.login(email,password);
+        resp.then((response)=>{
+            return response.json();
+        }).then((json)=>{
+            console.log(json);
+        });
+    }
+
+    // 用户注册
+    registerHandler(email,password) {
+        let resp = UserQuest.register(email,password);
+        resp.then((response)=>{
+            return response.json();
+        }).then((json)=>{
+            console.log(json);
+        });
+        console.log(resp)
     }
 
     render() {
         const {children, ...props} = this.props;
 
-        let style={display:this.state.hasLogin ? 'block' : 'none'};
+        let style = {display: this.state.hasLogin ? 'block' : 'none'};
         let loginStyle = {
-            display:!this.state.hasLogin ? 'block' : 'none'
+            display: !this.state.hasLogin ? 'block' : 'none'
         };
         return (
             <div className='app'>
                 <Header userName={this.state.userName}/>
-                <div style={loginStyle} className="login">
-                    <Login />
+                <div style={loginStyle} className="login" ref="login">
+                    <Login loginHandler={this.loginHandler.bind(this)}/>
+                </div>
+                <div className="register" ref="register">
+                    <Register registerHandler={this.registerHandler.bind(this)}/>
                 </div>
                 <div style={style}>
                     <Navbar />

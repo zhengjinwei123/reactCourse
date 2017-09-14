@@ -3,6 +3,15 @@
     padding-left: 200px;
 }
 .login{
+    position: absolute;
+    top:-400px;
     margin-left:calc(50% - 200px);
-    margin-top: 50px;
+    transition: top 1s;
+}
+
+.register{
+    position: absolute;
+    top:-400px;
+    margin-left:calc(50% - 200px);
+    transition: top 1s;
 }

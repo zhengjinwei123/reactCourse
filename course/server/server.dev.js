@@ -1,16 +1,14 @@
 // Provide custom regenerator runtime and core-js
-require('babel-polyfill')
+require('babel-polyfill');
 
 // Node babel source map support
-require('source-map-support').install()
+require('source-map-support').install();
 
 // Javascript require hook
 require('babel-register')({
     presets: ['es2015', 'react', 'stage-0'],
     plugins: ['add-module-exports']
-})
-
-
+});
 
 // Css require hook
 require('css-modules-require-hook')({
@@ -22,7 +20,7 @@ require('css-modules-require-hook')({
         }).css,
     camelCase: true,
     generateScopedName: '[name]__[local]__[hash:base64:8]'
-})
+});
 
 //png|jpg|gif|webp|bmp|woff|woff2|svg|ttf|eot
 // Image require hook
@@ -33,8 +31,10 @@ require('asset-require-hook')({
 });
 
 const app = require('./app.js'),
+    settings  = require("./settings");
     convert = require('koa-convert'),
     webpack = require('webpack'),
+    serve = require('koa-static'),
     fs = require('fs'),
     path = require('path'),
     devMiddleware = require('koa-webpack-dev-middleware'),
@@ -42,9 +42,14 @@ const app = require('./app.js'),
     views = require('koa-views'),
     router = require('./routes'),
     clientRoute = require('./middlewares/clientRoute'),
+    response = require("./middlewares/response");
     config = require('../build/webpack.dev.config'),
-    port = process.env.port || 3000,
+    port = process.env.port || settings.port,
+    mongooseUtil = require("./utils/mongoose/db");
     compiler = webpack(config);
+
+
+mongooseUtil.set(settings.mongodb.host, settings.mongodb.port, settings.mongodb.db, null, path.join(__dirname,"./models/schemas/"));
 
 // Webpack hook event to write html file into `/views/dev` from `/views/tpl` due to server render
 compiler.plugin('emit', (compilation, callback) => {
@@ -62,13 +67,16 @@ compiler.plugin('emit', (compilation, callback) => {
 });
 
 app.use(views(path.resolve(__dirname, '../views/dev'), {map: {html: 'ejs'}}));
+app.use(response);
 app.use(clientRoute);
 app.use(router.routes());
 app.use(router.allowedMethods());
-console.log(`\n==> 🌎  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`);
+console.log(`\n==> server  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`);
 app.use(convert(devMiddleware(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath
 })));
+
+app.use(serve(path.join(__dirname,'../client/statics/')));
 app.use(convert(hotMiddleware(compiler)));
 app.listen(port);

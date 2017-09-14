@@ -23,6 +23,7 @@ function fetchUserInfo() {
     }
 }
 
+
 export default {
     replaceUserInfo,
     fetchUserInfo,

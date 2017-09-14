@@ -6,4 +6,12 @@ async function getUserInfo(ctx) {
     }
 }
 
-export default {getUserInfo}
+async function login(ctx) {
+    ctx.send(null,"login success");
+}
+
+async function register(ctx){
+    ctx.send(null,"register success");
+}
+
+export default {getUserInfo,login,register}
