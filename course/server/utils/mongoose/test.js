@@ -10,3 +10,10 @@ MongodbUtil.schema('student').exec(function(err,model,release){
          release();
     });
 });
+
+MongodbUtil.schema('student').exec(function(err,model,release){
+    model.insertData(function(err,resp){
+        console.log(err,resp)
+        release();
+    });
+});

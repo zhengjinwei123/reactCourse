@@ -45,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/utils/mongoose/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="399">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -75,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="demon.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="demon.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/utils/mongoose/schemas/demon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="22" column="2" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
+            <state relative-caret-position="357">
+              <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -185,9 +185,9 @@
         <option value="$PROJECT_DIR$/server/server.prod.js" />
         <option value="$PROJECT_DIR$/server/server.dev.js" />
         <option value="$PROJECT_DIR$/server/utils/mongoose/template.js" />
-        <option value="$PROJECT_DIR$/server/utils/mongoose/test.js" />
         <option value="$PROJECT_DIR$/server/utils/mongoose/db.js" />
         <option value="$PROJECT_DIR$/server/utils/mongoose/schemas/demon.js" />
+        <option value="$PROJECT_DIR$/server/utils/mongoose/test.js" />
       </list>
     </option>
   </component>
@@ -788,12 +788,12 @@
       <workItem from="1505028177334" duration="10257000" />
       <workItem from="1505309154412" duration="4114000" />
       <workItem from="1505353580308" duration="25078000" />
-      <workItem from="1505383476741" duration="3575000" />
+      <workItem from="1505383476741" duration="3691000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58439000" />
+    <option name="totallyTimeSpent" value="58555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1181,14 +1181,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/utils/mongoose/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/utils/mongoose/db.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -1199,8 +1191,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/utils/mongoose/schemas/demon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="22" column="2" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
+        <state relative-caret-position="357">
+          <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/utils/mongoose/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
