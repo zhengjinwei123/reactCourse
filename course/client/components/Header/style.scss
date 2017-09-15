@@ -33,11 +33,34 @@
             border-radius: 100%;
             margin-top: 9px;
             margin-right: 10px;
+
+            &:hover{
+                border-radius: 16px 16px;
+                cursor: pointer;
+            }
         }
         .description {
             float: right;
             margin-right: 10px;
             color: #fff;
+        }
+        .round-btn{
+            float: right;
+            width: 32px;
+            height: 32px;
+            border-radius: 100%;
+            margin-top: 9px;
+            margin-right: 10px;
+            box-shadow: inset 2px 2px 1px #fff4f7;
+            border:none;
+            background: #46a6f4;
+            color:#f1f1f1;
+            outline: none;
+            &:hover{
+                cursor: pointer;
+                background: #dcddf4;
+                color: #c60a1c;
+            }
         }
     }
 }

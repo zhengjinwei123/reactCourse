@@ -48,9 +48,10 @@ const app = require('./app.js'),
     mongooseUtil = require("./utils/mongoose/db");
     compiler = webpack(config);
 
+    // let Trunkify = require("thunkify-wrap");
+
 
 mongooseUtil.set(settings.mongodb.host, settings.mongodb.port, settings.mongodb.db, null, path.join(__dirname,"./models/schemas/"));
-
 // Webpack hook event to write html file into `/views/dev` from `/views/tpl` due to server render
 compiler.plugin('emit', (compilation, callback) => {
     const assets = compilation.assets;

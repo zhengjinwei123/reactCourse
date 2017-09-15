@@ -26,13 +26,15 @@ class CRoot extends Component {
 
         this.state = {
             hasLogin: false,
-            userName: ''
+            userName: '',
+            loginError: null
         }
     }
 
     componentDidMount() {
         let loginName = localStore.getItem(CommConst.LOGIN_NAME);
-        if (loginName) {
+
+        if (loginName !== 'null' && loginName !== 'undefined' && loginName !== '') {
             this.setState({
                 hasLogin: true,
                 userName: loginName
@@ -65,24 +67,48 @@ class CRoot extends Component {
     }
 
     // 用户登录
-    loginHandler(email,password) {
-        let resp = UserQuest.login(email,password);
-        resp.then((response)=>{
+    loginHandler(email, password) {
+        let resp = UserQuest.login(email, password);
+        resp.then((response) => {
             return response.json();
-        }).then((json)=>{
-            console.log(json);
+        }).then((json) => {
+            if (json.error) {
+                alert(json.error);
+            } else {
+                localStore.setItem(CommConst.LOGIN_NAME, json.user);
+                this.setState({
+                    hasLogin: true,
+                    userName: json.user
+                })
+            }
         });
     }
 
     // 用户注册
-    registerHandler(email,password) {
-        let resp = UserQuest.register(email,password);
-        resp.then((response)=>{
+    registerHandler(email, password) {
+        let resp = UserQuest.register(email, password);
+        resp.then((response) => {
             return response.json();
-        }).then((json)=>{
+        }).then((json) => {
             console.log(json);
         });
-        console.log(resp)
+    }
+
+    logoutHandler() {
+        let resp = UserQuest.logout();
+        resp.then((response) => {
+            return response.json();
+        }).then((json) => {
+            if (json.error) {
+                alert(json.error);
+            } else {
+                localStore.setItem(CommConst.LOGIN_NAME, '');
+                this.setState({
+                    hasLogin: false,
+                    userName: ''
+                })
+            }
+        });
     }
 
     render() {
@@ -94,7 +120,7 @@ class CRoot extends Component {
         };
         return (
             <div className='app'>
-                <Header userName={this.state.userName}/>
+                <Header userName={this.state.userName} logoutHandler={this.logoutHandler.bind(this)}/>
                 <div style={loginStyle} className="login" ref="login">
                     <Login loginHandler={this.loginHandler.bind(this)}/>
                 </div>

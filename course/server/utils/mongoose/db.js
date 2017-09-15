@@ -16,7 +16,7 @@ let MongodbUtil = function () {
 
 Util.inherits(MongodbUtil, Emitter);
 
-MongodbUtil.prototype.set = function(host, port, db, userOption, runPath){
+MongodbUtil.prototype.set = function (host, port, db, userOption, runPath) {
     this.host = host || '127.0.0.1';
     this.port = port || 27017;
     this.db = db;
@@ -35,15 +35,14 @@ MongodbUtil.prototype.set = function(host, port, db, userOption, runPath){
     }
 
 
-
     this.runPath = runPath || Path.join(__dirname, "/schemas");
 
     let _error = null;
     try {
         if (!FileUtil.isExists(this.runPath)) {
             FileUtil.createDirectory(this.runPath);
-            let templateContent = FileUtil.readSync(Path.join(__dirname, "/template.js"));
-            FileUtil.writeSync(Path.join(this.runPath, "/demon.js"), templateContent);
+            // let templateContent = FileUtil.readSync(Path.join(__dirname, "/template.js"));
+            // FileUtil.writeSync(Path.join(this.runPath, "/demon.js"), templateContent);
         }
     } catch (e) {
         _error = e.message;
@@ -59,19 +58,19 @@ MongodbUtil.prototype.set = function(host, port, db, userOption, runPath){
     let self = this;
 
     const factory = {
-        create: function(){
-            return new Promise(function(resolve, reject){
-                let client = Mongoose.createConnection(self.dbUrl,{
-                    useMongoClient:true
+        create: function () {
+            return new Promise(function (resolve, reject) {
+                let client = Mongoose.createConnection(self.dbUrl, {
+                    useMongoClient: true
                 });
-                client.on('connected', function(){
+                client.on('connected', function () {
                     resolve(client)
                 })
             })
         },
-        destroy: function(client){
-            return new Promise(function(resolve){
-                client.on('end', function(){
+        destroy: function (client) {
+            return new Promise(function (resolve) {
+                client.on('end', function () {
                     resolve()
                 });
                 client.disconnect()
@@ -90,11 +89,10 @@ MongodbUtil.prototype.set = function(host, port, db, userOption, runPath){
 };
 
 
-
-MongodbUtil.getInstance = (function(){
+MongodbUtil.getInstance = (function () {
     let inst = null;
-    return function(){
-        if(inst instanceof MongodbUtil){
+    return function () {
+        if (inst instanceof MongodbUtil) {
             return inst;
         }
         inst = new MongodbUtil();
@@ -117,14 +115,16 @@ MongodbUtil.prototype.loadSchema = function () {
 
 MongodbUtil.prototype.exec = function (callback) {
     const resourcePromise = this.myPool.acquire();
-    let self = this;
-    resourcePromise.then(function(client) {
-        callback(null,client.model(this.modelName, this.runList[this.modelName]),function(){
-            self.myPool.release(client);
-        });
-    }.bind(this)).catch(function(err){
+    resourcePromise.then(function (client) {
+        callback(null, {
+            model: client.model(this.modelName, this.runList[this.modelName]),
+            release: function(){
+                this.myPool.release(client);
+            }.bind(this)
+        })
+    }.bind(this)).catch(function (err) {
         callback(err);
-    });
+    }.bind(this));
 
 };
 

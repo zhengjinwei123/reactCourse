@@ -43,7 +43,9 @@ class Login extends Component {
                     </div>
                 </div>
                 <div ref="error" style={{color: "red"}}>
-
+                    {
+                        this.props.loginError
+                    }
                 </div>
                 <div className="footer">
                     <div className="pull-right">
