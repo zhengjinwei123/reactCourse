@@ -90,7 +90,11 @@ class CRoot extends Component {
         resp.then((response) => {
             return response.json();
         }).then((json) => {
-            console.log(json);
+            if(json.error){
+                alert(json.error);
+            }else{
+                alert("注册成功");
+            }
         });
     }
 

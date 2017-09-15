@@ -45,8 +45,34 @@ function* login() {
     }
 }
 
-function* register(ctx) {
-    ctx.send(null, "register success");
+function* register() {
+    let param = this.request.body;
+    if (param === undefined ||
+        param.email === undefined ||
+        param.password === undefined) {
+        this.send("param error");
+        return;
+    }
+
+    try{
+        MongooseUtil.schema('user');
+        let exec = yield Trunkify(MongooseUtil.exec, MongooseUtil)();
+        if (exec) {
+            let result = yield Trunkify(exec.model.insertData, exec.model)(param.email,param.password);
+            if (!result) {
+                this.send("注册失败");
+            } else {
+                this.send(null, "register success");
+            }
+            // 释放数据库连接
+            exec.release();
+        } else {
+            this.send("db error");
+        }
+    }catch(ex){
+        this.send("注册失败,请换个用户名试试吧");
+    }
+
 }
 
 export default {getUserInfo, login, register,logout}
