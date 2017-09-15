@@ -34,7 +34,11 @@ schema.statics.insertData = function (email, password, callback) {
 };
 
 
-module.exports = {
+export default {
     "table": 'user',
     'schema': schema
 };
+// module.exports = {
+//     "table": 'user',
+//     'schema': schema
+// };

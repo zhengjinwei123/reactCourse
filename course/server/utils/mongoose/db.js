@@ -16,7 +16,7 @@ let MongodbUtil = function () {
 
 Util.inherits(MongodbUtil, Emitter);
 
-MongodbUtil.prototype.set = function (host, port, db, userOption, runPath) {
+MongodbUtil.prototype.set = function (host, port, db, userOption, runPath,modelList) {
     this.host = host || '127.0.0.1';
     this.port = port || 27017;
     this.db = db;
@@ -85,7 +85,15 @@ MongodbUtil.prototype.set = function (host, port, db, userOption, runPath) {
 
     this.myPool = poolModule.createPool(factory, opts);
 
-    this.loadSchema();
+    if(!modelList){
+        this.loadSchema();
+    }else{
+        modelList.forEach((m)=>{
+            if (m['table'] && m['schema']) {
+                this.runList[m.table] = this.runList[m.table] || m.schema;
+            }
+        })
+    }
 };
 
 
@@ -103,11 +111,10 @@ MongodbUtil.getInstance = (function () {
 MongodbUtil.prototype.loadSchema = function () {
     let schemaFileList = FileUtil.traverseSync(this.runPath);
 
-    let self = this;
-    schemaFileList.forEach(function (f) {
+    schemaFileList.forEach((f) =>{
         let scheme = require(f.path);
         if (scheme['table'] && scheme['schema']) {
-            self.runList[scheme.table] = self.runList[scheme.table] || scheme.schema;
+            this.runList[scheme.table] = this.runList[scheme.table] || scheme.schema;
         }
     });
 };
