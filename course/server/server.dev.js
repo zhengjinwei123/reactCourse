@@ -72,7 +72,7 @@ app.use(response);
 app.use(clientRoute);
 app.use(router.routes());
 app.use(router.allowedMethods());
-console.log(`\n==> server  Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`);
+console.log(`\n==> server  Listening on port ${port}. Open up http://${settings.host}:${port}/ in your browser.\n`);
 app.use(convert(devMiddleware(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath
@@ -80,4 +80,4 @@ app.use(convert(devMiddleware(compiler, {
 
 app.use(serve(path.join(__dirname,'../client/statics/')));
 app.use(convert(hotMiddleware(compiler)));
-app.listen(port);
+app.listen(port,settings.host);

@@ -25,8 +25,8 @@ app.use(response);
 app.use(clientRoute);
 app.use(router.routes());
 app.use(router.allowedMethods());
-app.listen(port);
-console.log(`\n==> server Listening on port ${port}. Open up http://localhost:${port}/ in your browser.\n`);
+app.listen(port,Settings.host);
+console.log(`\n==> server Listening on port ${port}. Open up http://${Settings.host}:${port}/ in your browser.\n`);
 
 
 

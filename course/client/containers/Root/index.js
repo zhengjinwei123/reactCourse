@@ -34,7 +34,7 @@ class CRoot extends Component {
     componentDidMount() {
         let loginName = localStore.getItem(CommConst.LOGIN_NAME);
 
-        if (loginName !== 'null' && loginName !== 'undefined' && loginName !== '') {
+        if (loginName && loginName !== 'null' && loginName !== 'undefined' && loginName !== '') {
             this.setState({
                 hasLogin: true,
                 userName: loginName

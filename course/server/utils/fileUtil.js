@@ -125,15 +125,15 @@ FileUtils.prototype.traverseSync = function (dirPath) {
         var files = Fs.readdirSync(path);
         for (var i = 0, len = files.length; i < len; i++) {
             var file = files[i];
-            var states = Fs.statSync(path + '\\' + file);
+            var states = Fs.statSync(path + '/' + file);
             if (states.isDirectory()) {
-                readFile(path + '\\' + file, filesList);
+                readFile(path + '/' + file, filesList);
             } else {
                 filesList.push({
                     mtime: states.mtime,
                     size: states.size,
                     name: file,
-                    path: path + '\\' + file,
+                    path: path + '/' + file,
                     ext: getExt(file),
                     rawName: getFileRawName(file)
                 });
