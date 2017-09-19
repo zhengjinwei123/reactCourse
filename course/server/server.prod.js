@@ -7,6 +7,7 @@ import router from './routes'
 import clientRoute from './middlewares/clientRoute'
 import Settings from './settings';
 import response from './middlewares/response'
+import jsonResponse from './middlewares/jsonResponse'
 
 
 const port = process.env.port || Settings.port;
@@ -22,6 +23,7 @@ mongooseUtil.set(Settings.mongodb.host, Settings.mongodb.port, Settings.mongodb.
 app.use(views(path.resolve(__dirname, '../views/prod'), {map: {html: 'ejs'}}));
 app.use(serve(path.resolve(__dirname, '../dist/client')));
 app.use(response);
+app.use(jsonResponse);
 app.use(clientRoute);
 app.use(router.routes());
 app.use(router.allowedMethods());
