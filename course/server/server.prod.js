@@ -14,7 +14,8 @@ const port = process.env.port || Settings.port;
 import mongooseUtil from "./utils/mongoose/db";
 
 let schemaList = [
-    require("./models/schemas/user")
+    require("./models/schemas/user"),
+    require("./models/schemas/subjects")
 ];
 
 mongooseUtil.set(Settings.mongodb.host, Settings.mongodb.port, Settings.mongodb.db, null, path.resolve(__dirname,"../server/models/schemas"),schemaList);
