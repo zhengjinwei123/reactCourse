@@ -23,9 +23,31 @@ function fetchUserInfo() {
     }
 }
 
+function replaceSubjectsInfo(subjectList){
+    return {
+        type: types.REPLACE_SUBJECT_INFO,
+        subjectList
+    }
+}
+
+function fetchSubjectsInfo(){
+    return dispatch=>{
+        utils.ajax({
+            url:'api/subjects/getSubjects',
+            type:'get'
+        }).then(res=>{
+            if(res && res.data){
+                dispatch(replaceSubjectsInfo(res.data))
+            }
+
+        })
+    }
+}
+
 
 export default {
     replaceUserInfo,
     fetchUserInfo,
-    clearUserInfo
+    clearUserInfo,
+    fetchSubjectsInfo
 }

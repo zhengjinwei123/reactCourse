@@ -1,7 +1,8 @@
 .main {
-    border:1px solid red;
-    position: fixed;
+    border:1px solid #ff74ee;
+    position: relative;
     top: 50px;
     left: 200px;
     width:calc(100% - 200px);
+    overflow: hidden;
 }

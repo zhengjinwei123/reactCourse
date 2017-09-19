@@ -42,7 +42,8 @@ const app = require('./app.js'),
     views = require('koa-views'),
     router = require('./routes'),
     clientRoute = require('./middlewares/clientRoute'),
-    response = require("./middlewares/response");
+    response = require("./middlewares/response"),
+    jsonResponse = require("./middlewares/jsonResponse"),
     config = require('../build/webpack.dev.config'),
     port = process.env.port || settings.port,
     mongooseUtil = require("./utils/mongoose/db");
@@ -69,6 +70,7 @@ compiler.plugin('emit', (compilation, callback) => {
 
 app.use(views(path.resolve(__dirname, '../views/dev'), {map: {html: 'ejs'}}));
 app.use(response);
+app.use(jsonResponse);
 app.use(clientRoute);
 app.use(router.routes());
 app.use(router.allowedMethods());

@@ -4,7 +4,6 @@ if (typeof require.ensure !== 'function') {
         callback(require)
     }
 }
-
 const routes = {
     childRoutes: [{
         path: '/',

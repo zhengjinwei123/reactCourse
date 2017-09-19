@@ -38,7 +38,3 @@ export default {
     "table": 'user',
     'schema': schema
 };
-// module.exports = {
-//     "table": 'user',
-//     'schema': schema
-// };

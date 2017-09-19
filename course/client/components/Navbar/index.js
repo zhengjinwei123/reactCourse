@@ -12,9 +12,9 @@ class Navbar extends Component {
     render() {
         return (
             <nav className='navbar'>
-                <IndexLink className='link' activeClassName='active' to="/">home</IndexLink>
-                <Link className='link' activeClassName='active' to="/explore">explore</Link>
-                <Link className='link' activeClassName='active' to="/about">about</Link>
+                <IndexLink className='link' activeClassName='active' to="/">主页</IndexLink>
+                <Link className='link' activeClassName='active' to="/explore">课程</Link>
+                <Link className='link' activeClassName='active' to="/about">关于</Link>
             </nav>
         )
     }

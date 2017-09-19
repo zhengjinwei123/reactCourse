@@ -12,7 +12,7 @@ from utils import stack
 
 m = mongo.MongoUtils(settings.cfg["mongo"]["host"],settings.cfg["mongo"]["port"])
 m.db("db_course")
-m.collection("subject").ensure_index('grade', unique=False)
+m.collection("subjects").ensure_index('grade', unique=False)
 # m.collection("subjects").insert({"name":"zhangsan","age":18})
 
 mySpider = spider.Spider()
@@ -69,7 +69,7 @@ else:
                     else:
                         for k in range(0,len(matchImgList)):
                             print(className+"----"+matchImgList[k])
-                            m.collection("subject").insert({
+                            m.collection("subjects").insert({
                                 "grade": className.decode('gbk'),
                                 "url": matchImgList[k]
                             })

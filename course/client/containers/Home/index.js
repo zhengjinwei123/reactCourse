@@ -10,7 +10,7 @@ class CHome extends Component {
     }
 
     render() {
-        const {actions} = this.props;
+        const {userInfo, actions} = this.props;
 
         return (
             <div className='app'>

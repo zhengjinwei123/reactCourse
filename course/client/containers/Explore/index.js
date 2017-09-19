@@ -7,14 +7,24 @@ class CExplore extends Component {
     constructor(props,context) {
         super(props,context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+        this.state={
+            subjectList:[]
+        }
     }
 
+    componentDidMount(){
+        const {actions} = this.props;
+        actions.fetchSubjectsInfo();
+    }
     render() {
-        const {userInfo, actions} = this.props;
-
+        const {userInfo, actions,subjectsInfo} = this.props;
         return (
             <div className='app'>
-                <Explore userInfo={userInfo} actions={actions}></Explore>
+                <Explore
+                    userInfo={userInfo}
+                    actions={actions}
+                    subjectList={subjectsInfo}>
+                </Explore>
             </div>
         )
     }

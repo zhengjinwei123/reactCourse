@@ -132,7 +132,7 @@ class CRoot extends Component {
                     <Register registerHandler={this.registerHandler.bind(this)}/>
                 </div>
                 <div style={style}>
-                    <Navbar />
+                    <Navbar/>
                     <Main>
                         {Children.map(children, child =>
                             cloneElement(child, {...props})
