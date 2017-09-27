@@ -1,0 +1,26 @@
+{
+  "gameid": {
+    "type": "Number",
+    "index": true,
+    "default": 0,
+    "unique": false
+  },
+  "areaid": {
+    "type": "Number",
+    "index": true,
+    "default": 0,
+    "unique": false
+  },
+  "groupid": {
+    "type": "Number",
+    "index": true,
+    "default": 0,
+    "unique": false
+  },
+  "channel": {
+    "type": "Number",
+    "index": true,
+    "default": 0,
+    "unique": false
+  }
+}
